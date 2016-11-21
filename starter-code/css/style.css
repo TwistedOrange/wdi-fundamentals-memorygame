@@ -1,0 +1,109 @@
+/* This is a multi-line
+comment. Add your CSS code
+from Unit 1 - 5 below  
+***********************/
+
+h1 {
+	//color: rgba(222,239,236,1);
+	//text-align: center;
+	font-size: 160%;
+	background-color: rgba(222,239,236,1);
+	padding: 2em;  //30px;
+}
+h2 {	
+	color: #ffd700;
+	text-align: center;
+}
+body{
+	text-align: center;
+	font-family: arial, sans-serif;
+	font-size: 14px;
+}
+p {
+	//text-align: center;
+	width: 60%;
+	margin 0 auto;
+	clear: both;
+	padding: 20px 15px;
+}
+#board {
+	height: 80%;
+	width: 50%;
+	display: inline-block;
+}
+.card {
+	height: 200px;
+	width: 150px;
+	border: 1px solid black;
+	background-color: yellow;
+	border-radius: 10px;
+	//display: inline-block;
+	margin: 4%;
+	float: left;
+}
+#id stack1 {
+	//padding: 10px;
+}
+#id stack2 {
+
+}
+button {
+	background-color: lightgrey;
+	border-radius: 5%;
+	padding: 9px;
+	margin-left: 24px;
+}
+nav {
+	background-color: #808080;
+	color: #fff;
+	padding: 35px;
+	display: block;
+	float: left;
+	clear: both;
+}
+nav a{
+	//margin-right: 15px;
+	margin: 0px 10px;
+	//border-bottom: #000, solid, 5px;
+}
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	content: " ";
+	clear: both;
+	height: 0;
+	font-size: 0;
+}
+a {
+	text-decoration: none;
+}
+a:link {
+	color: #ffbf00;
+}
+a:visited {
+	color: #ffbf00;
+}
+a:active {
+	// border: 5px black solid;
+}
+a:hover {
+	background-color: #ee5f3c;
+	//border: 1px black solid;
+}
+a:visited {
+	color: #ffbf00;
+}
+footer {
+	text-align: right;
+	font-size: 11px;
+	//border-top: 8px solid lightgrey;
+	//background-color: #808080;
+	background-color: lightgrey;
+	//padding-bottom: 1em;
+	padding: 1em;
+	clear: both;
+}
+#social {
+	color: #0f5d99;
+}
+
