@@ -9,6 +9,7 @@ h1 {
 	font-size: 160%;
 	background-color: rgba(222,239,236,1);
 	padding: 2em;  //30px;
+	//display: inline-block;
 }
 h2 {	
 	color: #ffd700;
@@ -26,6 +27,7 @@ p {
 	clear: both;
 	padding: 20px 15px;
 }
+
 #board {
 	height: 80%;
 	width: 50%;
@@ -41,12 +43,7 @@ p {
 	margin: 4%;
 	float: left;
 }
-#id stack1 {
-	//padding: 10px;
-}
-#id stack2 {
 
-}
 button {
 	background-color: lightgrey;
 	border-radius: 5%;

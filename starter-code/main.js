@@ -1,28 +1,120 @@
 console.log("JS file is connected to HTML! Woo!")
 
-/* Instructions from Unit 9.5 (completed 11/18/2016)
+var allCards = [ 'queen', 'queen', 'king', 'king'];
+var kingCard = "<img src='king.png' alt='king card' />";
+var queenCard = "<img src='queen.png' alt='queen card' />";
+var cardsInPlay = [];
+var thePlayingBoard;
 
-1) In your main.js file, create an if else statement checking for equality between two of your cards (you choose which ones).
+// no match found from last two selected cards, put cards back so player can try again
+function tryAgain() {
+  var cardsOnBoard = document.querySelectorAll('[data-card]');
+  for (var x = 0; x< cardsInPlay.length; x++) {
+    if ( cardsInPlay[0] === cardsOnBoard[x].textContent ) {
+      cardsInPlay[x].textContent = "";
+    }
+  }
+  
+}
 
-if statement should consist of a boolean checking for equality between two created variables. You should have a condition to 
-compare two king variables, two queen variables, and one of each. Start with comparing cardTwo with cardFour (using ===).
+function isMatch() { 
+	if (cardsInPlay[0] === cardsInPlay[1]) {
+  	alert("You found two : "+cardsInPlay[0]+"s");
+    
+    // disable click event for chosen cards
+    var disableClick = document.querySelectorAll('[data-card]');
+    // find those cards in the displayed board
+    for (var i=0; i<allCards.length; i++) {
+      // is this card a match?
+      if (disableClick[i].textContent === cardsInPlay[0]) {
+        disableClick.removeEventListener('click', isTwoCards);        
+      }
+     alert("You Won! Click [Start Game] to play again.")
+    }
+    cardsInPlay = [];
+    //restartTheBoard();
+	} else {
+    // no match found, put cards back in play
+		//setTimeout(tryAgain, 1500); // wait 1.5 sec
+    alert("no match found.")
+	}
+}
 
-2) If values are equal, execute an alert with the message, "You found a match!". 
-If values are not equal, execute an alert with the message, "Sorry, try again.".
+function createBoard() {
+	// set the card's 'data-card' to be the element of the array
+  // data — attributes are meant to store info about an element that is not tied to a style, e.g., 'king'.
 
-3) Save your main.js file and open your index.html file in the browser to check to see if your alert is working. 
-*/
+  // randomize the deck
+  //---add code for allCards[]
 
-var cardOne, cardTwo, cardThree, cardFour;
-var isKing = "King";
-var isQueen = "Queen";
 
-cardOne = isKing;
-cardThree = isQueen;
+	for (var i=0; i< allCards.length; i++) {
+		// create new div for each card
+		var newCard = document.createElement('div');
+		newCard.className = 'card';     // assign CSS style to each card
 
-if (cardOne === isKing && cardThree === isKing) {
-  alert("You found two matching Kings.");
-} else if (cardOne === isQueen && cardThree === isQueen) {
-  alert("You found two matching Queens.");
-} else { alert("No matches, try again."); }
+		// assign card value/type 
+		newCard.setAttribute('data-card', allCards[i]);
 
+    //console.log('created card -'+newCard.getAttribute('data-card', allCards[i]) )
+		// add event to listen to & function to run on event
+		newCard.addEventListener('click', isTwoCards);
+
+		// add this element to the board
+		thePlayingBoard = document.getElementById('game-board');	
+		thePlayingBoard.appendChild(newCard);
+    
+    // when card is clicked, assign function to execute
+    newCard.addEventListener('click', isTwoCards);
+		//console.log('added card '+ i +' type: '+ allCards[i]);
+	}
+}
+
+// one of the cards was clicked, store its value to later compare
+function isTwoCards() {
+	// add card to array of cards in play
+  // use 'this' to reference element which triggered function call
+  
+	cardsInPlay.push(this.getAttribute('data-card'));
+  var cardType = this.getAttribute('data-card');
+
+  switch (cardType) {
+    case 'queen' : 
+      console.log('show queen card');
+      cardType.innerHTML = queenCard;
+      break;
+    case 'king': 
+      console.log('show king card');
+      cardType.innerHTML = kingCard;
+      break;
+  }
+	// if have two cards in play, check for a match
+	if ( cardsInPlay.length === 2) {
+		isMatch(cardsInPlay);
+		
+		// delay so easier to see
+		setTimeout( function() {
+      // wait 2 sec
+    }, 5000);
+
+		// clear cards for next try
+		cardsInPlay = [];
+	}
+}
+
+// starts new play, resets everything
+function clearBoard() {
+	cardsInPlay = [];
+
+	var bd = document.getElementById('game-board');  
+}
+
+function goPlay() {
+	// sets up the board, shuffles the deck
+  console.log('goPlay me');
+  createBoard();
+}
+
+// assign action to Start button to kick off new game
+var startGame = document.getElementById('go');
+startGame.addEventListener('click', goPlay);
